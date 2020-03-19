@@ -66,6 +66,24 @@
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/start"
+            android:text="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/resume"
+            android:text="resume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/pause"
+            android:text="pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
     <pl.bclogic.pulsator4droid.library.PulsatorLayout
@@ -74,11 +92,11 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_above="@id/controls_layout"
-        app:pulse_count="4"
-        app:pulse_duration="7000"
+        app:pulse_count="2"
+        app:pulse_duration="3000"
         app:pulse_repeat="0"
         app:pulse_color="@color/colorAccent"
-        app:pulse_startFromScratch="false"
+        app:pulse_startFromScratch="true"
         app:pulse_interpolator="Decelerate">
 
         <ImageView

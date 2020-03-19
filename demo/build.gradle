@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 29
+    buildToolsVersion "24.0.3"
 
     defaultConfig {
         applicationId "pl.bclogic.pulsator4droid.sampleapplication"
-        minSdkVersion 18
-        targetSdkVersion 24
+        minSdkVersion 19
+        targetSdkVersion 29
         versionCode 1
         versionName VERSION_NAME
     }

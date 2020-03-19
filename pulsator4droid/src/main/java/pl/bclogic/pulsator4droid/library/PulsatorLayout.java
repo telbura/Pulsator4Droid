@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class PulsatorLayout extends RelativeLayout {
 
-    public static final int INFINITE = 0;
+    public static final int INFINITE = -1;
 
     public static final int INTERP_LINEAR = 0;
     public static final int INTERP_ACCELERATE = 1;
@@ -54,6 +54,8 @@ public class PulsatorLayout extends RelativeLayout {
     private float mCenterX;
     private float mCenterY;
     private boolean mIsStarted;
+
+    private OnAnimationEndListener callback;
 
     /**
      * Simple constructor to use when creating a view from code.
@@ -146,6 +148,14 @@ public class PulsatorLayout extends RelativeLayout {
         }
     }
 
+    public synchronized void pause() {
+        mAnimatorSet.pause();
+    }
+
+    public synchronized void resume() {
+        mAnimatorSet.resume();
+    }
+
     /**
      * Stop pulse animation.
      */
@@ -155,6 +165,7 @@ public class PulsatorLayout extends RelativeLayout {
         }
 
         mAnimatorSet.end();
+        mAnimatorSet = null;
     }
 
     public synchronized boolean isStarted() {
@@ -403,6 +414,7 @@ public class PulsatorLayout extends RelativeLayout {
         @Override
         public void onAnimationEnd(Animator animator) {
             mIsStarted = false;
+            callback.onAnimationEnd();
         }
 
         @Override
@@ -415,5 +427,13 @@ public class PulsatorLayout extends RelativeLayout {
         }
 
     };
+
+    public void setOnAnimationEndListener(OnAnimationEndListener callback) {
+        this.callback = callback;
+    }
+
+    public interface OnAnimationEndListener {
+        void onAnimationEnd();
+    }
 
 }

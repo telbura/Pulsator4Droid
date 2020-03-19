@@ -1,7 +1,10 @@
 package pl.bclogic.pulsator4droid.demo;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -36,6 +39,44 @@ public class MainActivity extends AppCompatActivity {
 
         // start pulsator
         mPulsator.start();
+
+        Button pause = (Button) findViewById(R.id.pause);
+        Button resume = (Button) findViewById(R.id.resume);
+        Button start = (Button) findViewById(R.id.start);
+
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPulsator.pause();
+            }
+        });
+
+        resume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPulsator.resume();
+            }
+        });
+
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPulsator.start();
+            }
+        });
+
+        mPulsator.setOnAnimationEndListener(new PulsatorLayout.OnAnimationEndListener() {
+            @Override
+            public void onAnimationEnd() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPulsator.start();
+                    }
+                }, 2000);
+            }
+        });
+
     }
 
     private final SeekBar.OnSeekBarChangeListener mCountChangeListener
